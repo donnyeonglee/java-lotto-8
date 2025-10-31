@@ -4,13 +4,6 @@ import java.util.*;
 
 public class InputValidator {
 
-    static final String WINNING_NUMBERS_BLANK = "[ERROR] 당첨 번호에 빈 값이 존재합니다.";
-    static final String NUMBER_NOT_INTEGER = "[ERROR] 번호가 정수가 아닙니다.";
-    static final String NUMBER_OUT_OF_RANGE = "[ERROR] 번호가 1~45 숫자 범위를 벗어납니다.";
-    static final String BONUS_NUMBER_IS_INCLUDED_IN_WINNING_NUMBERS = "[ERROR] 보너스 번호가 당첨 번호에 포함됩니다.";
-    static final int MIN_LOTTO_NUM = 1;
-    static final int MAX_LOTTO_NUM = 45;
-
     static Input input = new Input();
     static List<Integer> lottoNumbers;
 
@@ -82,7 +75,7 @@ public class InputValidator {
 
     private static void throwWhenBlank(String inputNumber) {
         if (inputNumber.isBlank()) {
-            System.out.println(WINNING_NUMBERS_BLANK);
+            System.out.println("[ERROR] 당첨 번호에 빈 값이 없어야 합니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -92,7 +85,7 @@ public class InputValidator {
         try {
             number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            System.out.println(NUMBER_NOT_INTEGER);
+            System.out.println("[ERROR] 번호는 정수여야 합니다.");
             throw new IllegalArgumentException();
         }
         return number;
