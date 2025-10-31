@@ -7,17 +7,19 @@ public class InputValidator {
     static final String MONEY_NOT_LONG = "[ERROR] 구입금액이 정수가 아닙니다.";
     static final String MONEY_NOT_MULTIPLE_OF_ONE_THOUSAND = "[ERROR] 구입금액이 1,000원으로 나누어 떨어지는 자연수가 아닙니다.";
     static final String WINNING_NUMBERS_BLANK = "[ERROR] 당첨 번호에 빈 값이 존재합니다.";
-    static final String WINNING_NUMBERS_NOT_INTEGER = "[ERROR] 당첨 번호가 정수가 아닙니다.";
+    static final String NUMBER_NOT_INTEGER = "[ERROR] 번호가 정수가 아닙니다.";
     static final String WINNING_NUMBERS_NOT_SIX = "[ERROR] 당첨 번호가 6개가 아닙니다.";
-    static final String WINNING_NUMBERS_OUT_OF_RANGE = "[ERROR] 당첨 번호가 1~45 숫자 범위를 벗어납니다.";
+    static final String NUMBER_OUT_OF_RANGE = "[ERROR] 번호가 1~45 숫자 범위를 벗어납니다.";
     static final String WINNING_NUMBERS_CONTAIN_DUPLICATES = "[ERROR] 당첨 번호가 중복을 포함합니다.";
+    static final String BONUS_NUMBER_IS_INCLUDED_IN_WINNING_NUMBERS = "[ERROR] 보너스 번호가 당첨 번호에 포함됩니다.";
     static final int MIN_LOTTO_NUM = 1;
     static final int MAX_LOTTO_NUM = 45;
 
     static Input input = new Input();
     static long money;
     static List<Integer> winningNumbers = new ArrayList<>();
-    
+    static int bonusNumber;
+
     public static long validatedMoney(String inputMoney) {
         while (true) {
             try {
@@ -36,11 +38,25 @@ public class InputValidator {
             try {
                 convertStringArrToIntArr(separateWinningNumbers(inputWinningNumbers));
                 validateSixInputNumbers(winningNumbers);
-                validateNumbersRange(winningNumbers);
+                validateWinningNumbersRange(winningNumbers);
                 validateDuplicate(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 inputWinningNumbers = input.enterWinnningNumbers();
+            }
+        }
+    }
+
+    public static void validateBonusNumber(String inputBonusNumber) {
+        while (true) {
+            try {
+                bonusNumber = parseIntOrThrow(inputBonusNumber);
+                validateNumberRange(bonusNumber);
+                validateBonusNumberNotInWinningNumbers();
+                System.out.println("보너스 번호 : " + bonusNumber); // 테스트 출력
+                break;
+            } catch (IllegalArgumentException e) {
+                inputBonusNumber = input.enterBonusNumber();
             }
         }
     }
@@ -93,7 +109,7 @@ public class InputValidator {
         try {
             number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            System.out.println(WINNING_NUMBERS_NOT_INTEGER);
+            System.out.println(NUMBER_NOT_INTEGER);
             throw new IllegalArgumentException();
         }
         return number;
@@ -106,13 +122,17 @@ public class InputValidator {
         }
     }
 
-    private static void validateNumbersRange(List<Integer> winningNumbers) {
+    private static void validateWinningNumbersRange(List<Integer> winningNumbers) {
         for (int num : winningNumbers) {
             System.out.println(num); // 테스트 출력
-            if (num < MIN_LOTTO_NUM || num > MAX_LOTTO_NUM) {
-                System.out.println(WINNING_NUMBERS_OUT_OF_RANGE);
-                throw new IllegalArgumentException();
-            }
+            validateNumberRange(num);
+        }
+    }
+
+    private static void validateNumberRange(int num) {
+        if (num < MIN_LOTTO_NUM || num > MAX_LOTTO_NUM) {
+            System.out.println(NUMBER_OUT_OF_RANGE);
+            throw new IllegalArgumentException();
         }
     }
 
@@ -124,4 +144,10 @@ public class InputValidator {
         }
     }
 
+    private static void validateBonusNumberNotInWinningNumbers() {
+        if (winningNumbers.contains(bonusNumber)) {
+            System.out.println(BONUS_NUMBER_IS_INCLUDED_IN_WINNING_NUMBERS);
+            throw new IllegalArgumentException();
+        }
+    }
 }

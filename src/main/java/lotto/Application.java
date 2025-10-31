@@ -9,5 +9,7 @@ public class Application {
         System.out.println("구매금액 : " + money); // 테스트 출력
 
         InputValidator.validatedWinningNumbers(input.enterWinnningNumbers());
+
+        InputValidator.validateBonusNumber(input.enterBonusNumber());
     }
 }
