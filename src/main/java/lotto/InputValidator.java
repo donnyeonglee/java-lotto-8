@@ -14,24 +14,17 @@ public class InputValidator {
     static final int MIN_LOTTO_NUM = 1;
     static final int MAX_LOTTO_NUM = 45;
 
-
     static Input input = new Input();
     static long money;
     static List<Integer> winningNumbers = new ArrayList<>();
-
-
-
+    
     public static long validatedMoney(String inputMoney) {
         while (true) {
             try {
                 parseLongOrThrow(inputMoney);
                 multipleOfOneThousandOrThrow(money);
                 return money;
-            } catch (NumberFormatException e) { // 모두 IllegalArgumentException으로 받도록 리팩토링하기.
-                System.out.println("NumberFormatException 발생");// 테스트출력
-                inputMoney = input.enterMoney();
             } catch (IllegalArgumentException e) {
-                System.out.println("IllegalArgumentException 발생"); //테스트출력
                 inputMoney = input.enterMoney();
             }
         }
@@ -58,14 +51,14 @@ public class InputValidator {
             System.out.println("입력받은 금액은 정수입니다."); // 테스트 출력
         } catch (NumberFormatException e) {
             System.out.println(MONEY_NOT_LONG);
-            throw new NumberFormatException();
+            throw new IllegalArgumentException();
         }
     }
 
     private static void multipleOfOneThousandOrThrow(long money) {
         if (money <= 0 || money % 1000 != 0) {
             System.out.println(MONEY_NOT_MULTIPLE_OF_ONE_THOUSAND);
-            throw new IllegalArgumentException(MONEY_NOT_MULTIPLE_OF_ONE_THOUSAND);
+            throw new IllegalArgumentException();
         }
         System.out.println("입력받은 금액은 1,000의 배수 입니다.."); // 테스트 출력
     }
