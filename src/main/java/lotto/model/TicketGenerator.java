@@ -29,8 +29,8 @@ public class TicketGenerator {
     }
 
     public List<Integer> generateSingleTicket() {
-        List<Integer> ticket = new ArrayList<>();
-        ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> ticket = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        //ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6); // ApplicationTest 통과를 위해 수정
         ticket.sort(Comparator.naturalOrder());
         ticketList = ticketList.concat(ticket.toString() + "\n");
         return ticket;
