@@ -24,7 +24,6 @@ public class InputValidator {
     }
 
     public static List<Integer> validatedLottoNumbers(String inputLottoNumbers) {
-        System.out.println("입력한 당첨 번호 : " + splitLottoNumbers(inputLottoNumbers)); // 테스트 출력
         while (true) {
             try {
                 Lotto lotto = new Lotto(convertStringArrToIntArr(splitLottoNumbers(inputLottoNumbers)));

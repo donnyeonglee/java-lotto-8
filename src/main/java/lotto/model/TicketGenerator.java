@@ -11,13 +11,15 @@ public class TicketGenerator {
     private final long money;
     int purchaseCount;
     List<List<Integer>> tickets = new ArrayList<>();
+    String ticketList = "";
 
     public TicketGenerator(long money) {
         this.money = money;
         this.purchaseCount = (int)(money / 1000);
-        System.out.println(purchaseCount + "개를 구매했습니다.");
+        ticketList = ticketList.concat("\n" + purchaseCount + "개를 구매했습니다.\n");
         generateTickets(purchaseCount);
         this.tickets = tickets;
+        this.ticketList = ticketList;
     }
 
     public void generateTickets(int purchaseCount) {
@@ -30,11 +32,15 @@ public class TicketGenerator {
         List<Integer> ticket = new ArrayList<>();
         ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         ticket.sort(Comparator.naturalOrder());
-        System.out.println(ticket);
+        ticketList = ticketList.concat(ticket.toString() + "\n");
         return ticket;
     }
 
     public List<List<Integer>> getTickets() {
         return tickets;
+    }
+
+    public String getTicketList() {
+        return ticketList;
     }
 }

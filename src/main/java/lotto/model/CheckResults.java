@@ -12,13 +12,15 @@ public class CheckResults {
     private final List<List<Integer>> tickets;
     private List<Integer> eachRankCount;
     private long totalPrize;
+    private double yield;
 
-    public CheckResults(List<Integer> lottoNumbers, int bonusNumber, List<List<Integer>> tickets) {
+    public CheckResults(long money, List<Integer> lottoNumbers, int bonusNumber, List<List<Integer>> tickets) {
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;
         this.tickets = tickets;
         this.eachRankCount = countEachRank(lottoNumbers, bonusNumber, tickets);
         this.totalPrize = calculateTotalPrize(eachRankCount);
+        this.yield = (100.0 * totalPrize) / money;
     }
 
     private List<Integer> countEachRank(List<Integer> lottoNumbers, int bonusNumber, List<List<Integer>> tickets) {
@@ -32,13 +34,8 @@ public class CheckResults {
             List<Integer> matchCountPair = new ArrayList<>();
             matchCountPair.add(lottoNumbersMatchCount);
             matchCountPair.add(bonusNumberMatchCount);
-            //System.out.println("일치하는 당첨 번호 수 : " + CountLottoNumbersMatch(lottoNumbers, ticket)); // 테스트 출력
-            //System.out.println("일치하는 보너스 번호 수 : " + CountBonusNumberMatch(bonusNumber, ticket)); // 테스트 출력
-            //System.out.println("일치하는 번호 수 쌍 : " + matchCountPair); // 테스트 출력
             assignedRankList.add(findRankByMatchCount(matchCountPair));
         }
-        System.out.println("각 티켓의 등수 : " + assignedRankList); // 테스트 출력
-        System.out.println("각 등수별 카운트 : " + countEachValueInList(assignedRankList)); // 테스트 출력
         return countEachValueInList(assignedRankList);
     }
 
@@ -64,8 +61,6 @@ public class CheckResults {
         Rank[] ranks = Rank.values();
         for (Rank rank : ranks) {
             if (matchCountPair.equals(rank.getMatchCountPair())) {
-                int rankNum = rank.getRank();// 테스트
-                System.out.println("당첨" + rank.getMatchCountPair() + " 등수 : " + rankNum);// 테스트 출력
                 return rank.getRank();
             }
         }
@@ -99,5 +94,9 @@ public class CheckResults {
 
     public long getTotalPrize() {
         return totalPrize;
+    }
+
+    public double getYield() {
+        return yield;
     }
 }
