@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.CheckResults;
 import lotto.view.Input;
 import lotto.view.InputValidator;
 import lotto.model.TicketGenerator;
@@ -23,5 +24,10 @@ public class Application {
 
         int bonusNumber = InputValidator.validatedBonusNumber(input.enterBonusNumber());
         System.out.println("보너스번호 : " + bonusNumber); // 테스트 출력
+
+        CheckResults checkResults = new CheckResults(lottoNumbers, bonusNumber, ticketGenerator.getTickets());
+        System.out.println("등수 별 카운트 : " + checkResults.getEachRankCount()); // 테스트 출력
+        System.out.println("총 당첨 금액 : " + checkResults.getTotalPrize()); // 테스트 출력
+        System.out.println("수익률 : " + 100 * checkResults.getTotalPrize() / money + "%"); // 테스트 출력
     }
 }
