@@ -1,13 +1,13 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
-import java.util.*;
-
 public class InputValidator {
-
     static InputView inputView = new InputView();
     static List<Integer> lottoNumbers;
 

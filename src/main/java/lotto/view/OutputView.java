@@ -1,11 +1,9 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.model.Rank;
 
-import java.util.List;
-
 public class OutputView {
-
     public void printTicketList(String ticketList) {
         System.out.println(ticketList);
     }

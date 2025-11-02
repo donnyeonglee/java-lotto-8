@@ -1,15 +1,13 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.CheckResults;
 import lotto.model.TicketGenerator;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class LottoController {
-
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -31,6 +29,4 @@ public class LottoController {
         CheckResults checkResults = new CheckResults(money, lottoNumbers, bonusNumber, ticketGenerator.getTickets());
         outputView.printResultStat(checkResults.getYield(), checkResults.getEachRankCount());
     }
-
-
 }

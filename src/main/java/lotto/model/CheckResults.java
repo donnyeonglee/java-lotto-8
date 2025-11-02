@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class CheckResults {
-
     private final List<Integer> lottoNumbers;
     private final int bonusNumber;
     private final List<List<Integer>> tickets;
@@ -26,20 +25,18 @@ public class CheckResults {
     private List<Integer> countEachRank(List<Integer> lottoNumbers, int bonusNumber, List<List<Integer>> tickets) {
         List<Integer> assignedRankList = new ArrayList<>();
         for (List<Integer> ticket : tickets) {
-            int lottoNumbersMatchCount = CountLottoNumbersMatch(lottoNumbers, ticket);
-            int bonusNumberMatchCount = CountBonusNumberMatch(bonusNumber, ticket);
+            int lottoNumbersMatchCount = countLottoNumbersMatch(lottoNumbers, ticket);
+            int bonusNumberMatchCount = countBonusNumberMatch(bonusNumber, ticket);
             if (lottoNumbersMatchCount != 5) {
                 bonusNumberMatchCount = -1;
             }
-            List<Integer> matchCountPair = new ArrayList<>();
-            matchCountPair.add(lottoNumbersMatchCount);
-            matchCountPair.add(bonusNumberMatchCount);
+            List<Integer> matchCountPair = new ArrayList<>(Arrays.asList(lottoNumbersMatchCount, bonusNumberMatchCount));
             assignedRankList.add(findRankByMatchCount(matchCountPair));
         }
         return countEachValueInList(assignedRankList);
     }
 
-    private int CountLottoNumbersMatch(List<Integer> lottoNumbers, List<Integer> ticket) {
+    private int countLottoNumbersMatch(List<Integer> lottoNumbers, List<Integer> ticket) {
         int matchCount = 0;
         for (int num : ticket) {
             if (lottoNumbers.contains(num)) {
@@ -49,7 +46,7 @@ public class CheckResults {
         return matchCount;
     }
 
-    private int CountBonusNumberMatch(int bonusNumber, List<Integer> ticket) {
+    private int countBonusNumberMatch(int bonusNumber, List<Integer> ticket) {
         int matchCount = 0;
         if (ticket.contains(bonusNumber)) {
             matchCount = 1;
