@@ -16,8 +16,6 @@ public class TicketGenerator {
         this.purchaseCount = (int) (money / 1000);
         ticketList = ticketList.concat("\n" + purchaseCount + "개를 구매했습니다.");
         generateTickets(purchaseCount);
-        this.tickets = tickets;
-        this.ticketList = ticketList;
     }
 
     public void generateTickets(int purchaseCount) {
