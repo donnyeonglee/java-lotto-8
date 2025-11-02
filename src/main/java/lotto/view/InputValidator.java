@@ -52,7 +52,7 @@ public class InputValidator {
 
     private static long parseLongOrThrow(String inputMoney) {
         try {
-            return Long.parseLong(inputMoney);
+            return Long.parseLong(inputMoney.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액이 정수가 아닙니다.");
         }
@@ -86,7 +86,7 @@ public class InputValidator {
     private static int parseIntOrThrow(String inputNumber) {
         int number;
         try {
-            number = Integer.parseInt(inputNumber);
+            number = Integer.parseInt(inputNumber.trim());
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 번호는 정수여야 합니다.");
             throw new IllegalArgumentException();

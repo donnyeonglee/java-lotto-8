@@ -14,7 +14,7 @@ public class TicketGenerator {
     public TicketGenerator(long money) {
         this.money = money;
         this.purchaseCount = (int) (money / 1000);
-        ticketList = ticketList.concat("\n" + purchaseCount + "개를 구매했습니다.\n");
+        ticketList = ticketList.concat("\n" + purchaseCount + "개를 구매했습니다.");
         generateTickets(purchaseCount);
         this.tickets = tickets;
         this.ticketList = ticketList;
@@ -30,7 +30,7 @@ public class TicketGenerator {
         List<Integer> ticket = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         //ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6); // ApplicationTest 통과를 위해 수정
         ticket.sort(Comparator.naturalOrder());
-        ticketList = ticketList.concat(ticket.toString() + "\n");
+        ticketList = ticketList.concat("\n" + ticket.toString());
         return ticket;
     }
 
