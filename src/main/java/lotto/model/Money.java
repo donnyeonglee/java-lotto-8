@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.model;
 
 public class Money {
     private final long money;

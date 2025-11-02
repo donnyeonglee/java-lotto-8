@@ -1,10 +1,14 @@
 package lotto.view;
 
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Money;
+
 import java.util.*;
 
 public class InputValidator {
 
-    static Input input = new Input();
+    static InputView inputView = new InputView();
     static List<Integer> lottoNumbers;
 
     public static long validatedMoney(String inputMoney) {
@@ -14,7 +18,7 @@ public class InputValidator {
                 return money.getMoney();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                inputMoney = input.enterMoney();
+                inputMoney = inputView.enterMoney();
             }
         }
     }
@@ -28,7 +32,7 @@ public class InputValidator {
                 return lotto.getNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                inputLottoNumbers = input.enterLottoNumbers();
+                inputLottoNumbers = inputView.enterLottoNumbers();
             }
         }
     }
@@ -41,7 +45,7 @@ public class InputValidator {
                 return bonus.getNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                inputBonusNumber = input.enterBonusNumber();
+                inputBonusNumber = inputView.enterBonusNumber();
             }
         }
 
