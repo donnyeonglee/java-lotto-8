@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class CheckResults {
-    private final List<Integer> lottoNumbers;
-    private final int bonusNumber;
-    private final List<List<Integer>> tickets;
-    private List<Integer> eachRankCount;
-    private long totalPrize;
-    private double yield;
+    private final List<Integer> lottoNumbers; // 당첨 번호
+    private final int bonusNumber; // 보너스 번호
+    private final List<List<Integer>> tickets; // 구매한 복권 번호 리스트
+    private List<Integer> eachRankCount; // 등수 별 당첨 복권 개수
+    private long totalPrize; // 당첨금 총합
+    private double yield; // 수익률
 
     public CheckResults(long money, List<Integer> lottoNumbers, int bonusNumber, List<List<Integer>> tickets) {
         this.lottoNumbers = lottoNumbers;

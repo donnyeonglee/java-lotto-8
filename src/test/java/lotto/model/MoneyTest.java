@@ -1,9 +1,9 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MoneyTest {
     @DisplayName("구입 금액이 1000의 배수가 아니면 예외가 발생한다.")

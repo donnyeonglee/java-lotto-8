@@ -3,8 +3,8 @@ package lotto.model;
 import java.util.List;
 
 public class Bonus {
-    private final int number;
-    private final List<Integer> lottoNumbers;
+    private final int number; // 보너스 번호
+    private final List<Integer> lottoNumbers; // 당첨 번호
 
     public Bonus(int number, List<Integer> lottoNumbers) {
         validate(number, lottoNumbers);
