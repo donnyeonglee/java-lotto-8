@@ -14,7 +14,7 @@ public class OutputView {
         for (int num = ranks.length - 1; num >= 0; num -= 1) {
             resultStat = resultStat.concat(ranks[num].getRankDescription() + " - " + eachRankCount.get(num) + "개\n");
         }
-        resultStat = resultStat.concat(String.format("총 수익률은 %.1f%%입니다.", yield));
+        resultStat = resultStat.concat(String.format("총 수익률은 %,.1f%%입니다.", yield));
         System.out.println(resultStat);
     }
 }

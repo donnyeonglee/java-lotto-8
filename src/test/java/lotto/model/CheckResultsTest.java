@@ -20,7 +20,7 @@ class CheckResultsTest {
         List<List<Integer>> tickets = new ArrayList<>();
         tickets.add(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7))); // 2등 당첨
         CheckResults checkResults = new CheckResults(money, lottoNumbers, bonusNumber, tickets);
-        assertThat(String.format("%.1f%%", checkResults.getYield())).isEqualTo("3000000.0%");
+        assertThat(String.format("%,.1f%%", checkResults.getYield())).isEqualTo("3,000,000.0%");
         assertThat(checkResults.getEachRankCount()).isEqualTo(new ArrayList<>(Arrays.asList(0, 1, 0, 0, 0)));
     }
 
@@ -38,8 +38,7 @@ class CheckResultsTest {
         tickets.add(new ArrayList<>(Arrays.asList(1, 2, 3, 8, 9, 10))); // 5등
         tickets.add(new ArrayList<>(Arrays.asList(11, 12, 13, 14, 15, 16))); // 낙첨
         CheckResults checkResults = new CheckResults(money, lottoNumbers, bonusNumber, tickets);
-        assertThat(String.format("%.1f%%", checkResults.getYield())).isEqualTo("33859250.0%");
+        assertThat(String.format("%,.1f%%", checkResults.getYield())).isEqualTo("33,859,250.0%");
         assertThat(checkResults.getEachRankCount()).isEqualTo(new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
     }
-
 }
